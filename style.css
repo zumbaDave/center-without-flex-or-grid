@@ -1,0 +1,109 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+/* not a good solution, will only work with one line of text */
+/* if your text jumps to next line, then the line height will put the next line below the div */
+/* MAKE THE HEIGHT OF THE DIV AND LINE HEIGHT OF THE INNER TEXT BE THE SAME, AS WELL AS USING TEXT-ALIGN: CENTER */
+
+.outer-box {
+    --height: 400px;
+    width: 600px;
+    height: var(--height);
+    background: hsl(213, 87%, 79%);
+    border-radius: .5rem;
+    box-shadow: 0 0 1rem rgb(0 0 0 / .2);
+}
+
+.inner-text {
+    font-size: 3rem;
+    text-align: center;
+    line-height: var(--height);
+    margin: 0;
+}
+
+
+/* works, but really should only use if you are actually in need of using a table */
+/* Using a display of table */
+.outer-box-2 {
+    --height: 400px;
+    width: 600px;
+    height: var(--height);
+    background: hsl(213, 87%, 79%);
+    border-radius: .5rem;
+    box-shadow: 0 0 1rem rgb(0 0 0 / .2);
+    display: table;
+}
+
+/* set display as table-cell and vertical-align: middle */
+.inner-text-2 {
+    display: table-cell;
+    vertical-align:  middle;
+    font-size: 3rem;
+    text-align: center;
+    margin: 0;
+}
+
+/* old gold standard way of doing things */
+/* set position relative for outer box */
+/* and position absolute for inner */
+.outer-box-3 {
+    --height: 400px;
+    width: 600px;
+    height: var(--height);
+    background: hsl(213, 87%, 79%);
+    border-radius: .5rem;
+    box-shadow: 0 0 1rem rgb(0 0 0 / .2);
+    position: relative;
+}
+
+/* top and left will position top right corner of inner box to the center, so we need to transform */
+.inner-box-3 {
+    position: absolute;
+    /* top and left are 50% of parent outer box */
+    top: 50%;
+    left: 50%;
+
+    /* 50% here is 50% of itself(the inner box) */
+    transform: translate(-50%, -50%);
+
+    background: hsl(343, 69%, 64%);
+    border: 10px dashed hsl(333, 60%, 35%);
+    width: 200px;
+    height: 200px;
+    border-radius: .5rem;
+}
+
+/* modern way of doing above, but better, but for both above and this, if you don't need absolute positioning, then you should use flex instead */
+/* set position relative for outer box */
+/* and position absolute for inner */
+.outer-box-4 {
+    --height: 400px;
+    width: 600px;
+    height: var(--height);
+    background: hsl(213, 87%, 79%);
+    border-radius: .5rem;
+    box-shadow: 0 0 1rem rgb(0 0 0 / .2);
+    position: relative;
+}
+
+
+/* use inset: 0 but becaause we set width and height of inner box to be smaller then parent div, inner div will not contain the entire area of the parent div */
+/* then to center, use margin auto */
+.inner-box-4 {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+
+    background: hsl(343, 69%, 64%);
+    border: 10px dashed hsl(333, 60%, 35%);
+    width: 200px;
+    height: 200px;
+    border-radius: .5rem;
+}
+
